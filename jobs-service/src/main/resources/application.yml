@@ -20,6 +20,10 @@ spring:
           jwk-set-uri: ${KEYCLOAK_JWK_SET_URI:http://localhost:8180/realms/fachowcy/protocol/openid-connect/certs}
           issuer-uri: ${KEYCLOAK_ISSUER_URI:http://localhost:8180/realms/fachowcy}
 
+logging:
+  pattern:
+    level: "%5p [%X{correlationId:-}]"
+
 server:
   port: ${SERVER_PORT:8081}
 
