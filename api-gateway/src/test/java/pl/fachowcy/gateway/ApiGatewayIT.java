@@ -44,8 +44,10 @@ class ApiGatewayIT {
       new AtomicReference<>();
   private static HttpServer downstream;
 
-  @Container @ServiceConnection(name = "redis")
-  static GenericContainer<?> redis = new GenericContainer<>("redis:7-alpine").withExposedPorts(6379);
+  @Container
+  @ServiceConnection(name = "redis")
+  static GenericContainer<?> redis =
+      new GenericContainer<>("redis:7-alpine").withExposedPorts(6379);
 
   @MockitoBean private ReactiveJwtDecoder jwtDecoder;
 
@@ -94,7 +96,8 @@ class ApiGatewayIT {
             inv ->
                 token.equals(inv.getArgument(0))
                     ? Mono.just(jwt)
-                    : Mono.error(new org.springframework.security.oauth2.jwt.BadJwtException("bad")));
+                    : Mono.error(
+                        new org.springframework.security.oauth2.jwt.BadJwtException("bad")));
   }
 
   @Test

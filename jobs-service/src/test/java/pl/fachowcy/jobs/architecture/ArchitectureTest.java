@@ -28,7 +28,10 @@ class ArchitectureTest {
           .resideInAPackage("pl.fachowcy.jobs.domain..")
           .should()
           .dependOnClassesThat()
-          .resideInAnyPackage("pl.fachowcy.jobs.web..", "pl.fachowcy.jobs.persistence..", "pl.fachowcy.jobs.config..");
+          .resideInAnyPackage(
+              "pl.fachowcy.jobs.web..",
+              "pl.fachowcy.jobs.persistence..",
+              "pl.fachowcy.jobs.config..");
 
   @ArchTest
   static final ArchRule persistenceDoesNotDependOnWeb =
@@ -41,10 +44,19 @@ class ArchitectureTest {
 
   @ArchTest
   static final ArchRule restControllersLiveInWebPackage =
-      classes().that().areAnnotatedWith(RestController.class).should().resideInAPackage("pl.fachowcy.jobs.web..");
+      classes()
+          .that()
+          .areAnnotatedWith(RestController.class)
+          .should()
+          .resideInAPackage("pl.fachowcy.jobs.web..");
 
   @ArchTest
   static final ArchRule controllersAreNamedController =
-      classes().that().resideInAPackage("pl.fachowcy.jobs.web..").and().areAnnotatedWith(RestController.class)
-          .should().haveSimpleNameEndingWith("Controller");
+      classes()
+          .that()
+          .resideInAPackage("pl.fachowcy.jobs.web..")
+          .and()
+          .areAnnotatedWith(RestController.class)
+          .should()
+          .haveSimpleNameEndingWith("Controller");
 }
