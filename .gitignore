@@ -42,3 +42,6 @@ ai-work/
 CLAUDE.md
 .idea/*
 !.idea/.gitignore
+
+### Claude working files ###
+CLAUDE/
