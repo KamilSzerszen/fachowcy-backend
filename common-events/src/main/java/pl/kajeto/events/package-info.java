@@ -1,2 +1,2 @@
 /** Event contracts shared between services (no business logic). */
-package pl.fachowcy.events;
+package pl.kajeto.events;

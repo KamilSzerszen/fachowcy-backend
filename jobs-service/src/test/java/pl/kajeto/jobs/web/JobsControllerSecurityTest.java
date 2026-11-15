@@ -1,4 +1,4 @@
-package pl.fachowcy.jobs.web;
+package pl.kajeto.jobs.web;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.jwt;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
-import pl.fachowcy.jobs.config.SecurityConfig;
+import pl.kajeto.jobs.config.SecurityConfig;
 
 @WebMvcTest(JobsController.class)
 @Import(SecurityConfig.class)

@@ -1,4 +1,4 @@
-package pl.fachowcy.gateway;
+package pl.kajeto.gateway;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyString;

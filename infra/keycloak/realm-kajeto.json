@@ -1,5 +1,5 @@
 {
-  "realm": "fachowcy",
+  "realm": "kajeto",
   "enabled": true,
   "sslRequired": "none",
   "registrationAllowed": false,
@@ -12,8 +12,8 @@
   },
   "clients": [
     {
-      "clientId": "fachowcy-app",
-      "name": "Fachowcy app",
+      "clientId": "kajeto-app",
+      "name": "Kajeto app",
       "enabled": true,
       "publicClient": true,
       "standardFlowEnabled": true,

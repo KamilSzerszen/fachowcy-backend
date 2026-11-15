@@ -1,4 +1,4 @@
-package pl.fachowcy.gateway.config;
+package pl.kajeto.gateway.config;
 
 import java.util.UUID;
 import org.springframework.core.Ordered;

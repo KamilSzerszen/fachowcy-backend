@@ -1,4 +1,4 @@
-package pl.fachowcy.jobs.config;
+package pl.kajeto.jobs.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

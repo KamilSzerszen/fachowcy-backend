@@ -1,4 +1,4 @@
-package pl.fachowcy.gateway.config;
+package pl.kajeto.gateway.config;
 
 import java.util.Optional;
 import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;

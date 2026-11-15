@@ -1,4 +1,4 @@
-package pl.fachowcy.jobs.domain;
+package pl.kajeto.jobs.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

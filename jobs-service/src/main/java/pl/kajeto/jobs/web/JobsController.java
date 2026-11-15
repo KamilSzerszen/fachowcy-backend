@@ -1,4 +1,4 @@
-package pl.fachowcy.jobs.web;
+package pl.kajeto.jobs.web;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.security.access.prepost.PreAuthorize;

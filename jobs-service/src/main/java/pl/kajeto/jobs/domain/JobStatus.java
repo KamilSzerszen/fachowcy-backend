@@ -1,4 +1,4 @@
-package pl.fachowcy.jobs.domain;
+package pl.kajeto.jobs.domain;
 
 public enum JobStatus {
   NEW,

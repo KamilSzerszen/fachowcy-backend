@@ -1,7 +1,7 @@
-package pl.fachowcy.jobs.persistence;
+package pl.kajeto.jobs.persistence;
 
 import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
-import pl.fachowcy.jobs.domain.Job;
+import pl.kajeto.jobs.domain.Job;
 
 public interface JobRepository extends JpaRepository<Job, UUID> {}

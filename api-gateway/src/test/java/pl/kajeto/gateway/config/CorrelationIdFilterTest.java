@@ -1,4 +1,4 @@
-package pl.fachowcy.gateway.config;
+package pl.kajeto.gateway.config;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

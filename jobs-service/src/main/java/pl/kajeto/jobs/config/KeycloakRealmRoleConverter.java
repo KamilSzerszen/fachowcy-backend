@@ -1,4 +1,4 @@
-package pl.fachowcy.jobs.config;
+package pl.kajeto.jobs.config;
 
 import java.util.Collection;
 import java.util.List;

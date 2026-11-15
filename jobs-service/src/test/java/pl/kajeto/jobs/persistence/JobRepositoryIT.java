@@ -1,4 +1,4 @@
-package pl.fachowcy.jobs.persistence;
+package pl.kajeto.jobs.persistence;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -10,8 +10,8 @@ import org.springframework.boot.testcontainers.service.connection.ServiceConnect
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
-import pl.fachowcy.jobs.domain.Job;
-import pl.fachowcy.jobs.domain.JobStatus;
+import pl.kajeto.jobs.domain.Job;
+import pl.kajeto.jobs.domain.JobStatus;
 
 /** Runs the real Flyway migration against PostgreSQL; Hibernate validates the schema. */
 @DataJpaTest

@@ -3,7 +3,7 @@
 # Kafka UI:              docker compose --profile tools up -d
 # Whole stack:           docker compose --profile apps up -d   (added in a later step)
 
-name: fachowcy
+name: kajeto
 
 services:
   postgres:
@@ -111,7 +111,7 @@ services:
     restart: "no"
     environment:
       MC_HOST_local: http://${MINIO_ROOT_USER}:${MINIO_ROOT_PASSWORD}@minio:9000
-    command: ["mb", "--ignore-existing", "local/${MINIO_BUCKET:-fachowcy}"]
+    command: ["mb", "--ignore-existing", "local/${MINIO_BUCKET:-kajeto}"]
 
   keycloak:
     image: quay.io/keycloak/keycloak:26.4
@@ -126,7 +126,7 @@ services:
     ports:
       - "8180:8080"
     volumes:
-      - ./infra/keycloak/realm-fachowcy.json:/opt/keycloak/data/import/realm-fachowcy.json:ro
+      - ./infra/keycloak/realm-kajeto.json:/opt/keycloak/data/import/realm-kajeto.json:ro
     healthcheck:
       test:
         - CMD-SHELL
@@ -142,7 +142,7 @@ services:
   # ---- Application services (profile "apps") ----
   # Build images first:  ./mvnw -pl jobs-service,api-gateway -am -DskipTests package jib:dockerBuild
   jobs-service:
-    image: fachowcy/jobs-service:latest
+    image: kajeto/jobs-service:latest
     profiles: ["apps"]
     depends_on:
       postgres:
@@ -153,8 +153,8 @@ services:
       JOBS_DB_URL: jdbc:postgresql://postgres:5432/jobs
       JOBS_DB_USER: jobs
       JOBS_DB_PASSWORD: ${JOBS_DB_PASSWORD:?set in .env}
-      KEYCLOAK_JWK_SET_URI: http://keycloak:8080/realms/fachowcy/protocol/openid-connect/certs
-      KEYCLOAK_ISSUER_URI: http://localhost:8180/realms/fachowcy
+      KEYCLOAK_JWK_SET_URI: http://keycloak:8080/realms/kajeto/protocol/openid-connect/certs
+      KEYCLOAK_ISSUER_URI: http://localhost:8180/realms/kajeto
     ports:
       - "8081:8081"
     healthcheck:
@@ -165,7 +165,7 @@ services:
       start_period: 30s
 
   api-gateway:
-    image: fachowcy/api-gateway:latest
+    image: kajeto/api-gateway:latest
     profiles: ["apps"]
     depends_on:
       jobs-service:
@@ -177,8 +177,8 @@ services:
     environment:
       REDIS_HOST: redis
       JOBS_SERVICE_URL: http://jobs-service:8081
-      KEYCLOAK_JWK_SET_URI: http://keycloak:8080/realms/fachowcy/protocol/openid-connect/certs
-      KEYCLOAK_ISSUER_URI: http://localhost:8180/realms/fachowcy
+      KEYCLOAK_JWK_SET_URI: http://keycloak:8080/realms/kajeto/protocol/openid-connect/certs
+      KEYCLOAK_ISSUER_URI: http://localhost:8180/realms/kajeto
     ports:
       - "8080:8080"
     healthcheck:
