@@ -139,6 +139,55 @@ services:
       retries: 20
       start_period: 40s
 
+  # ---- Application services (profile "apps") ----
+  # Build images first:  ./mvnw -pl jobs-service,api-gateway -am -DskipTests package jib:dockerBuild
+  jobs-service:
+    image: fachowcy/jobs-service:latest
+    profiles: ["apps"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+      keycloak:
+        condition: service_healthy
+    environment:
+      JOBS_DB_URL: jdbc:postgresql://postgres:5432/jobs
+      JOBS_DB_USER: jobs
+      JOBS_DB_PASSWORD: ${JOBS_DB_PASSWORD:?set in .env}
+      KEYCLOAK_JWK_SET_URI: http://keycloak:8080/realms/fachowcy/protocol/openid-connect/certs
+      KEYCLOAK_ISSUER_URI: http://localhost:8180/realms/fachowcy
+    ports:
+      - "8081:8081"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs http://localhost:8081/actuator/health/readiness | grep -q UP"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+      start_period: 30s
+
+  api-gateway:
+    image: fachowcy/api-gateway:latest
+    profiles: ["apps"]
+    depends_on:
+      jobs-service:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      keycloak:
+        condition: service_healthy
+    environment:
+      REDIS_HOST: redis
+      JOBS_SERVICE_URL: http://jobs-service:8081
+      KEYCLOAK_JWK_SET_URI: http://keycloak:8080/realms/fachowcy/protocol/openid-connect/certs
+      KEYCLOAK_ISSUER_URI: http://localhost:8180/realms/fachowcy
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs http://localhost:8080/actuator/health/readiness | grep -q UP"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+      start_period: 30s
+
 volumes:
   postgres-data:
   kafka-data:
