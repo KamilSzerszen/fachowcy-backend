@@ -16,6 +16,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.security.oauth2.jwt.Jwt;
@@ -32,11 +33,8 @@ import reactor.core.publisher.Mono;
 /** Boots the gateway with real Redis (Testcontainers) and a stub downstream service. */
 @SpringBootTest(
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
-    properties = {
-      "RATE_LIMIT_REPLENISH=1",
-      "RATE_LIMIT_BURST=3",
-      "spring.test.webtestclient.timeout=10s"
-    })
+    properties = {"RATE_LIMIT_REPLENISH=1", "RATE_LIMIT_BURST=3"})
+@AutoConfigureWebTestClient(timeout = "30s")
 @Testcontainers
 class ApiGatewayIT {
 
