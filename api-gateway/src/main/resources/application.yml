@@ -17,6 +17,8 @@ spring:
     gateway:
       server:
         webflux:
+          default-filters:
+            - DedupeResponseHeader=X-Correlation-Id, RETAIN_FIRST
           routes:
             - id: jobs-service
               uri: ${JOBS_SERVICE_URL:http://localhost:8081}
