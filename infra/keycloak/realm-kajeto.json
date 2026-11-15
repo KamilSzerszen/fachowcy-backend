@@ -1,0 +1,48 @@
+{
+  "realm": "kajeto",
+  "enabled": true,
+  "sslRequired": "none",
+  "registrationAllowed": false,
+  "accessTokenLifespan": 900,
+  "roles": {
+    "realm": [
+      { "name": "OWNER", "description": "Tradesperson who owns the business (DEV ONLY realm)" },
+      { "name": "WORKER", "description": "Employee of the owner" }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "kajeto-app",
+      "name": "Kajeto app",
+      "enabled": true,
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": true,
+      "redirectUris": ["http://localhost:*"],
+      "webOrigins": ["+"],
+      "protocol": "openid-connect"
+    }
+  ],
+  "users": [
+    {
+      "username": "dev-owner",
+      "enabled": true,
+      "emailVerified": true,
+      "email": "dev-owner@example.test",
+      "firstName": "Dev",
+      "lastName": "Owner",
+      "credentials": [{ "type": "password", "value": "dev-only-password", "temporary": false }],
+      "realmRoles": ["OWNER"]
+    },
+    {
+      "username": "dev-worker",
+      "enabled": true,
+      "emailVerified": true,
+      "email": "dev-worker@example.test",
+      "firstName": "Dev",
+      "lastName": "Worker",
+      "credentials": [{ "type": "password", "value": "dev-only-password", "temporary": false }],
+      "realmRoles": ["WORKER"]
+    }
+  ]
+}

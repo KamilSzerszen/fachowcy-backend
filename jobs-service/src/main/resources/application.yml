@@ -17,8 +17,8 @@ spring:
         jwt:
           # Keys come from jwk-set-uri (reachable from inside the container);
           # the iss claim is validated against issuer-uri (public URL). No discovery call.
-          jwk-set-uri: ${KEYCLOAK_JWK_SET_URI:http://localhost:8180/realms/fachowcy/protocol/openid-connect/certs}
-          issuer-uri: ${KEYCLOAK_ISSUER_URI:http://localhost:8180/realms/fachowcy}
+          jwk-set-uri: ${KEYCLOAK_JWK_SET_URI:http://localhost:8180/realms/kajeto/protocol/openid-connect/certs}
+          issuer-uri: ${KEYCLOAK_ISSUER_URI:http://localhost:8180/realms/kajeto}
 
 logging:
   pattern:

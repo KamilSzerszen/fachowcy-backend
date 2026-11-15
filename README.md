@@ -1,6 +1,8 @@
-# Fachowcy backend
+# Kajeto backend
 
 Backend for a mobile app for tradespeople (jobs, customers, payments, receipts, offline-first sync). It is built as a production-style microservice system and doubles as a portfolio project: every decision is recorded as an [ADR](docs/adr).
+
+> Kajeto (from "kajet", a tradesperson's job notebook) is the product name since 2026-11-15; earlier commits and ADR history use the working name "Fachowcy".
 
 > Status: **stage 0**, the production skeleton (build, infrastructure, auth, gateway, first service, tests, CI). No business features yet.
 
@@ -69,12 +71,12 @@ If Maven fails with a certificate error (`PKIX path building failed`) behind a c
 
 ## Get a test token and call the API
 
-The realm `fachowcy` (dev only) has two users, both with password `dev-only-password`: `dev-owner` (role `OWNER`) and `dev-worker` (role `WORKER`).
+The realm `kajeto` (dev only) has two users, both with password `dev-only-password`: `dev-owner` (role `OWNER`) and `dev-worker` (role `WORKER`).
 
 ```bash
-TOKEN=$(curl -s -d grant_type=password -d client_id=fachowcy-app \
+TOKEN=$(curl -s -d grant_type=password -d client_id=kajeto-app \
   -d username=dev-owner -d password=dev-only-password \
-  http://localhost:8180/realms/fachowcy/protocol/openid-connect/token | jq -r .access_token)
+  http://localhost:8180/realms/kajeto/protocol/openid-connect/token | jq -r .access_token)
 
 curl -i http://localhost:8080/api/v1/jobs/ping                                   # 401
 curl -i -H "Authorization: Bearer $TOKEN" http://localhost:8080/api/v1/jobs/ping  # 200 {"status":"ok",...}
